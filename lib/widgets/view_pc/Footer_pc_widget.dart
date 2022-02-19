@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nuevoestilogoogle/providers/providers.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FooterPc extends StatelessWidget {
@@ -24,7 +26,9 @@ class FooterPc extends StatelessWidget {
 
 Widget bntleft(BuildContext context) {
 
-  List<String> _locations = ['Español'];
+  final localizations = Provider.of<LocalizationsProvider>(context);
+  List<String> _locations = ['ES', 'EN'];
+
 
   return Container(
     child: Row(
@@ -45,16 +49,17 @@ Widget bntleft(BuildContext context) {
         ),
         SizedBox(width: 20),
         Container(
-          height: 40,
+          width: 100,
           child: DropdownButton(
             underline: Container(),
-            value: 'Español',
+            value: localizations.language,
             style: TextStyle(decoration: TextDecoration.none),
+
             items: _locations.map((String a){
               return DropdownMenuItem(
                 value: a,
                 child: Text(
-                  a,
+                  a == 'ES' ? 'Español' : 'English',
                   style: TextStyle(
                     fontFamily: 'Google',
                     color: Theme.of(context).hintColor,
@@ -63,7 +68,7 @@ Widget bntleft(BuildContext context) {
               );
           }).toList(),
             onChanged: (value){
-
+              localizations.languagee = value.toString();
             },
           ),
         ),

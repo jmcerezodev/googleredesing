@@ -76,7 +76,7 @@ class HeaderPc extends StatelessWidget {
     return Container(
       child: Row(
         children: [
-          changeTheme.isDark ? Text('Light',style: TextStyle(fontFamily: 'Google'),) : Text('Dark',style: TextStyle(fontFamily: 'Google')),
+          Text('Modo Oscuro',style: TextStyle(fontFamily: 'Google')),
           Switch(
             value: changeTheme.isDark,
             onChanged: (value){
