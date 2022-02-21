@@ -11,7 +11,6 @@ class FooterPc extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 20),
       width: double.infinity,
       height: 50,
-      //color: Colors.grey,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -19,7 +18,6 @@ class FooterPc extends StatelessWidget {
           btnRight(context),
         ],
       ),
-
     );
   }
 }

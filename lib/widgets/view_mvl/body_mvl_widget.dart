@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:nuevoestilogoogle/providers/providers.dart';
 import 'package:provider/provider.dart';
@@ -54,7 +55,7 @@ TextSpan textSpan(String letra, Color color){
     style: TextStyle(
       fontFamily: 'Google',
       color: color,
-      fontSize: 50
+      fontSize: 75
     ),
   );
 }
@@ -63,24 +64,26 @@ Widget searchBar(BuildContext context){
 
   final changeTheme = Provider.of<ChangeTheme>(context);
 
-  return Container(
-    width: 400,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          width: 300,
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          decoration: BoxDecoration(
-              color: changeTheme.isDark ? Color(0xff333333) : Color(0xffEDEDED),
-              borderRadius: BorderRadius.circular(20)
+  return BounceInUp(
+    child: Container(
+      width: 400,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 300,
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+                color: changeTheme.isDark ? Color(0xff333333) : Color(0xffEDEDED),
+                borderRadius: BorderRadius.circular(20)
+            ),
+            
+            child: textFieldBody(context),
           ),
-          
-          child: textFieldBody(context),
-        ),
 
 
-      ],
+        ],
+      ),
     ),
   );
 }

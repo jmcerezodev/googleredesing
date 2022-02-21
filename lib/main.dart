@@ -19,6 +19,7 @@ class StateProvider extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ChangeTheme()),
         ChangeNotifierProvider(create: (_) => Search()),
         ChangeNotifierProvider(create: (_) => LocalizationsProvider()),
+        ChangeNotifierProvider(create: (_) => HoverTitle()),
 
       ],
       child: MyApp(),

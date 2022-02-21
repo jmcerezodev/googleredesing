@@ -1,3 +1,5 @@
+import 'package:animate_do/animate_do.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:nuevoestilogoogle/providers/providers.dart';
 import 'package:provider/provider.dart';
@@ -14,12 +16,10 @@ class BodyPc extends StatelessWidget {
     return Container(
       alignment: Alignment.center,
       width: double.infinity,
-      //height: 250,
-      //color: Colors.red,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          titleGoogle(),
+          titleGoogle(context),
           SizedBox(height: 50),
           searchBar(context),
           SizedBox(height: 50),
@@ -31,23 +31,43 @@ class BodyPc extends StatelessWidget {
   }
 }
 
-Widget titleGoogle(){
-  return RichText(
-    text: TextSpan(
-      children: [
+Widget titleGoogle(BuildContext context){
+  
+  final hoverTitle = Provider.of<HoverTitle>(context);
+  
+  return MouseRegion(
+    onEnter: (_){
+      hoverTitle.isHover = true;
+      print(hoverTitle.isHover);
+      },
+    onExit: (_) {
+      hoverTitle.isHover = false;
+      print(hoverTitle.isHover);
+    },
+    child: hoverTitle.isHover == true ? AnimatedTextKit(
+            repeatForever: true,
 
-        textSpan('G', Colors.blue),
-        textSpan('o', Colors.red),
-        textSpan('o', Colors.orangeAccent),
-        textSpan('g', Colors.blue),
-        textSpan('l', Colors.green),
-        textSpan('e', Colors.red),
-
-
-
-      ]
-    ),
+            animatedTexts: [
+              WavyAnimatedText(
+                'Google',
+                textStyle: TextStyle(fontSize: 120, fontFamily: 'Google'),
+              ),
+            ],
+          )
+        : RichText(
+            text: TextSpan(
+              children: [
+                textSpan('G', Colors.blue),
+                textSpan('o', Colors.red),
+                textSpan('o', Colors.orangeAccent),
+                textSpan('g', Colors.blue),
+                textSpan('l', Colors.green),
+                textSpan('e', Colors.red),
+              ],
+            ),
+          ),
   );
+
 }
 
 TextSpan textSpan(String letra, Color color){
@@ -65,24 +85,27 @@ Widget searchBar(BuildContext context){
 
   final changeTheme = Provider.of<ChangeTheme>(context);
 
-  return Container(
-    width: double.infinity,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
+  return BounceInUp(
+    delay: Duration(milliseconds: 500),
+    child: Container(
+      width: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
 
-        Container(
-          width: 600,
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          decoration: BoxDecoration(
-              color: changeTheme.isDark ? Color(0xff333333) : Color(0xffEDEDED),
-              borderRadius: BorderRadius.circular(20)
+          Container(
+            width: 600,
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+                color: changeTheme.isDark ? Color(0xff333333) : Color(0xffEDEDED),
+                borderRadius: BorderRadius.circular(20)
+            ),
+
+            child: textFieldBody(context),
           ),
-          
-          child: textFieldBody(context),
-        ),
 
-      ],
+        ],
+      ),
     ),
   );
 }

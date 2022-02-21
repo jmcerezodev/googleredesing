@@ -27,21 +27,17 @@ class HeaderMvl extends StatelessWidget {
   Widget btnsLeft(BuildContext context) {
 
     final _urlStore = 'https://store.google.com';
-    final _urlMap = 'https://www.google.es/maps/place/Espa%C3%B1a/@39.8769703,-12.6985822,5z/data=!4m5!3m4!1s0xc42e3783261bc8b:0xa6ec2c940768a3ec!8m2!3d40.463667!4d-3.74922?hl=es';
 
     return Container(
+      margin: EdgeInsets.only(left: 5),
       child: Row(
         children: [
           IconButton(
             splashRadius: 20,
-            icon: Icon(Icons.store, color: Colors.blue),
+            icon: Image(image: NetworkImage('https://cdn-icons-png.flaticon.com/512/300/300221.png')),
             onPressed: () => launch(_urlStore),
           ),
-          IconButton(
-            splashRadius: 20,
-            icon: Icon(Icons.location_on, color: Colors.blue),
-            onPressed: () => launch(_urlMap),
-          ),
+
         ],
       ),
     );
